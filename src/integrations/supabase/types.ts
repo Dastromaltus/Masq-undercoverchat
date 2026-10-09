@@ -267,6 +267,135 @@ export type Database = {
           },
         ]
       }
+      poll_ballots: {
+        Row: {
+          created_at: string
+          id: string
+          poll_id: string
+          voter_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          poll_id: string
+          voter_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          poll_id?: string
+          voter_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "poll_ballots_poll_id_fkey"
+            columns: ["poll_id"]
+            isOneToOne: false
+            referencedRelation: "polls"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      poll_choices: {
+        Row: {
+          ballot_id: string
+          option_id: string
+        }
+        Insert: {
+          ballot_id: string
+          option_id: string
+        }
+        Update: {
+          ballot_id?: string
+          option_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "poll_choices_ballot_id_fkey"
+            columns: ["ballot_id"]
+            isOneToOne: false
+            referencedRelation: "poll_ballots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "poll_choices_option_id_fkey"
+            columns: ["option_id"]
+            isOneToOne: false
+            referencedRelation: "poll_options"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      poll_options: {
+        Row: {
+          id: string
+          label: string
+          poll_id: string
+          position: number
+        }
+        Insert: {
+          id?: string
+          label: string
+          poll_id: string
+          position: number
+        }
+        Update: {
+          id?: string
+          label?: string
+          poll_id?: string
+          position?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "poll_options_poll_id_fkey"
+            columns: ["poll_id"]
+            isOneToOne: false
+            referencedRelation: "polls"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      polls: {
+        Row: {
+          closes_at: string | null
+          created_at: string
+          id: string
+          multiple: boolean
+          owner_id: string
+          question: string
+          results_visibility: Database["public"]["Enums"]["results_visibility"]
+          status: Database["public"]["Enums"]["content_status"]
+        }
+        Insert: {
+          closes_at?: string | null
+          created_at?: string
+          id?: string
+          multiple?: boolean
+          owner_id: string
+          question: string
+          results_visibility?: Database["public"]["Enums"]["results_visibility"]
+          status?: Database["public"]["Enums"]["content_status"]
+        }
+        Update: {
+          closes_at?: string | null
+          created_at?: string
+          id?: string
+          multiple?: boolean
+          owner_id?: string
+          question?: string
+          results_visibility?: Database["public"]["Enums"]["results_visibility"]
+          status?: Database["public"]["Enums"]["content_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "polls_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           age_declared_at: string
@@ -424,8 +553,23 @@ export type Database = {
         Args: { _message_id: string }
         Returns: undefined
       }
+      cast_vote: {
+        Args: { _option_ids: string[]; _poll_id: string }
+        Returns: undefined
+      }
       cfg_int: { Args: { _default: number; _key: string }; Returns: number }
+      create_poll: {
+        Args: {
+          _closes_at: string
+          _multiple: boolean
+          _options: string[]
+          _question: string
+          _visibility: Database["public"]["Enums"]["results_visibility"]
+        }
+        Returns: string
+      }
       export_my_data: { Args: never; Returns: Json }
+      get_poll: { Args: { _poll_id: string }; Returns: Json }
       get_public_profile: {
         Args: { _username: string }
         Returns: {
@@ -458,6 +602,7 @@ export type Database = {
     Enums: {
       app_role: "admin" | "moderator" | "user"
       content_status: "published" | "pending" | "hidden" | "deleted"
+      results_visibility: "always" | "after_vote" | "after_close"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -587,6 +732,7 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "moderator", "user"],
       content_status: ["published", "pending", "hidden", "deleted"],
+      results_visibility: ["always", "after_vote", "after_close"],
     },
   },
 } as const
