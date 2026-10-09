@@ -15,3 +15,4 @@
 - Privileged roles live in `user_roles`, checked via `has_role()`; never assigned from the client — why: prevents privilege escalation.
 - All UI strings live in `src/i18n/{fr,en}.ts` (en typed against fr) — why: complete FR/EN parity.
 - Age is self-declared (`profiles.age_verification_status`) — why: a future verification provider can update this field without schema redesign.
+- Every public table gets explicit minimal GRANTs (default privileges to anon/authenticated are revoked) — why: Supabase defaults granted full table rights, which exposed blocked sender ids and writable status columns.

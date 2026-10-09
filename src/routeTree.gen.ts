@@ -20,11 +20,14 @@ import { Route as SafetyRouteImport } from './routes/safety'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedChannelsRouteImport } from './routes/_authenticated/channels'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
-import { Route as AuthenticatedPollsRouteImport } from './routes/_authenticated/polls'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedStudioRouteImport } from './routes/_authenticated/studio'
+import { Route as PIdRouteImport } from './routes/p.$id'
 import { Route as UUsernameRouteImport } from './routes/u.$username'
 import { Route as AuthenticatedInboxIndexRouteImport } from './routes/_authenticated/inbox.index'
 import { Route as AuthenticatedInboxIdRouteImport } from './routes/_authenticated/inbox.$id'
+import { Route as AuthenticatedPollsIndexRouteImport } from './routes/_authenticated/polls.index'
+import { Route as AuthenticatedPollsNewRouteImport } from './routes/_authenticated/polls.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -80,15 +83,20 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedPollsRoute = AuthenticatedPollsRouteImport.update({
-  id: '/polls',
-  path: '/polls',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStudioRoute = AuthenticatedStudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const PIdRoute = PIdRouteImport.update({
+  id: '/p/$id',
+  path: '/p/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const UUsernameRoute = UUsernameRouteImport.update({
   id: '/u/$username',
@@ -105,6 +113,16 @@ const AuthenticatedInboxIdRoute = AuthenticatedInboxIdRouteImport.update({
   path: '/inbox/$id',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPollsIndexRoute = AuthenticatedPollsIndexRouteImport.update({
+  id: '/polls/',
+  path: '/polls/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPollsNewRoute = AuthenticatedPollsNewRouteImport.update({
+  id: '/polls/new',
+  path: '/polls/new',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,11 +135,14 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRoute
   '/channels': typeof AuthenticatedChannelsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/polls': typeof AuthenticatedPollsRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/studio': typeof AuthenticatedStudioRoute
+  '/p/$id': typeof PIdRoute
   '/u/$username': typeof UUsernameRoute
   '/inbox/$id': typeof AuthenticatedInboxIdRoute
+  '/polls/new': typeof AuthenticatedPollsNewRoute
   '/inbox/': typeof AuthenticatedInboxIndexRoute
+  '/polls/': typeof AuthenticatedPollsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,11 +155,14 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthenticatedAdminRoute
   '/channels': typeof AuthenticatedChannelsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/polls': typeof AuthenticatedPollsRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/studio': typeof AuthenticatedStudioRoute
+  '/p/$id': typeof PIdRoute
   '/u/$username': typeof UUsernameRoute
   '/inbox/$id': typeof AuthenticatedInboxIdRoute
+  '/polls/new': typeof AuthenticatedPollsNewRoute
   '/inbox': typeof AuthenticatedInboxIndexRoute
+  '/polls': typeof AuthenticatedPollsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -153,11 +177,14 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/channels': typeof AuthenticatedChannelsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/polls': typeof AuthenticatedPollsRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/studio': typeof AuthenticatedStudioRoute
+  '/p/$id': typeof PIdRoute
   '/u/$username': typeof UUsernameRoute
   '/_authenticated/inbox/$id': typeof AuthenticatedInboxIdRoute
+  '/_authenticated/polls/new': typeof AuthenticatedPollsNewRoute
   '/_authenticated/inbox/': typeof AuthenticatedInboxIndexRoute
+  '/_authenticated/polls/': typeof AuthenticatedPollsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -172,11 +199,14 @@ export interface FileRouteTypes {
     | '/admin'
     | '/channels'
     | '/dashboard'
-    | '/polls'
     | '/profile'
+    | '/studio'
+    | '/p/$id'
     | '/u/$username'
     | '/inbox/$id'
+    | '/polls/new'
     | '/inbox/'
+    | '/polls/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -189,11 +219,14 @@ export interface FileRouteTypes {
     | '/admin'
     | '/channels'
     | '/dashboard'
-    | '/polls'
     | '/profile'
+    | '/studio'
+    | '/p/$id'
     | '/u/$username'
     | '/inbox/$id'
+    | '/polls/new'
     | '/inbox'
+    | '/polls'
   id:
     | '__root__'
     | '/'
@@ -207,11 +240,14 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/_authenticated/channels'
     | '/_authenticated/dashboard'
-    | '/_authenticated/polls'
     | '/_authenticated/profile'
+    | '/_authenticated/studio'
+    | '/p/$id'
     | '/u/$username'
     | '/_authenticated/inbox/$id'
+    | '/_authenticated/polls/new'
     | '/_authenticated/inbox/'
+    | '/_authenticated/polls/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -223,6 +259,7 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SafetyRoute: typeof SafetyRoute
+  PIdRoute: typeof PIdRoute
   UUsernameRoute: typeof UUsernameRoute
 }
 
@@ -305,19 +342,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/polls': {
-      id: '/_authenticated/polls'
-      path: '/polls'
-      fullPath: '/polls'
-      preLoaderRoute: typeof AuthenticatedPollsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/profile': {
       id: '/_authenticated/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/studio': {
+      id: '/_authenticated/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof AuthenticatedStudioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/p/$id': {
+      id: '/p/$id'
+      path: '/p/$id'
+      fullPath: '/p/$id'
+      preLoaderRoute: typeof PIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/u/$username': {
       id: '/u/$username'
@@ -340,6 +384,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInboxIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/polls/': {
+      id: '/_authenticated/polls/'
+      path: '/polls'
+      fullPath: '/polls/'
+      preLoaderRoute: typeof AuthenticatedPollsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/polls/new': {
+      id: '/_authenticated/polls/new'
+      path: '/polls/new'
+      fullPath: '/polls/new'
+      preLoaderRoute: typeof AuthenticatedPollsNewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -347,20 +405,24 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedChannelsRoute: typeof AuthenticatedChannelsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedPollsRoute: typeof AuthenticatedPollsRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedStudioRoute: typeof AuthenticatedStudioRoute
   AuthenticatedInboxIdRoute: typeof AuthenticatedInboxIdRoute
+  AuthenticatedPollsNewRoute: typeof AuthenticatedPollsNewRoute
   AuthenticatedInboxIndexRoute: typeof AuthenticatedInboxIndexRoute
+  AuthenticatedPollsIndexRoute: typeof AuthenticatedPollsIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedChannelsRoute: AuthenticatedChannelsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
-  AuthenticatedPollsRoute: AuthenticatedPollsRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedStudioRoute: AuthenticatedStudioRoute,
   AuthenticatedInboxIdRoute: AuthenticatedInboxIdRoute,
+  AuthenticatedPollsNewRoute: AuthenticatedPollsNewRoute,
   AuthenticatedInboxIndexRoute: AuthenticatedInboxIndexRoute,
+  AuthenticatedPollsIndexRoute: AuthenticatedPollsIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -375,6 +437,7 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SafetyRoute: SafetyRoute,
+  PIdRoute: PIdRoute,
   UUsernameRoute: UUsernameRoute,
 }
 export const routeTree = rootRouteImport
