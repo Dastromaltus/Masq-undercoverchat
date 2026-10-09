@@ -21,6 +21,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedChannelsRouteImport } from './routes/_authenticated/channels'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedStudioRouteImport } from './routes/_authenticated/studio'
 import { Route as PIdRouteImport } from './routes/p.$id'
 import { Route as UUsernameRouteImport } from './routes/u.$username'
 import { Route as AuthenticatedInboxIndexRouteImport } from './routes/_authenticated/inbox.index'
@@ -87,6 +88,11 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedStudioRoute = AuthenticatedStudioRouteImport.update({
+  id: '/studio',
+  path: '/studio',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const PIdRoute = PIdRouteImport.update({
   id: '/p/$id',
   path: '/p/$id',
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/channels': typeof AuthenticatedChannelsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/studio': typeof AuthenticatedStudioRoute
   '/p/$id': typeof PIdRoute
   '/u/$username': typeof UUsernameRoute
   '/inbox/$id': typeof AuthenticatedInboxIdRoute
@@ -149,6 +156,7 @@ export interface FileRoutesByTo {
   '/channels': typeof AuthenticatedChannelsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/studio': typeof AuthenticatedStudioRoute
   '/p/$id': typeof PIdRoute
   '/u/$username': typeof UUsernameRoute
   '/inbox/$id': typeof AuthenticatedInboxIdRoute
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/_authenticated/channels': typeof AuthenticatedChannelsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/studio': typeof AuthenticatedStudioRoute
   '/p/$id': typeof PIdRoute
   '/u/$username': typeof UUsernameRoute
   '/_authenticated/inbox/$id': typeof AuthenticatedInboxIdRoute
@@ -191,6 +200,7 @@ export interface FileRouteTypes {
     | '/channels'
     | '/dashboard'
     | '/profile'
+    | '/studio'
     | '/p/$id'
     | '/u/$username'
     | '/inbox/$id'
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/channels'
     | '/dashboard'
     | '/profile'
+    | '/studio'
     | '/p/$id'
     | '/u/$username'
     | '/inbox/$id'
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
     | '/_authenticated/channels'
     | '/_authenticated/dashboard'
     | '/_authenticated/profile'
+    | '/_authenticated/studio'
     | '/p/$id'
     | '/u/$username'
     | '/_authenticated/inbox/$id'
@@ -337,6 +349,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/studio': {
+      id: '/_authenticated/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof AuthenticatedStudioRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/p/$id': {
       id: '/p/$id'
       path: '/p/$id'
@@ -387,6 +406,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedChannelsRoute: typeof AuthenticatedChannelsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedStudioRoute: typeof AuthenticatedStudioRoute
   AuthenticatedInboxIdRoute: typeof AuthenticatedInboxIdRoute
   AuthenticatedPollsNewRoute: typeof AuthenticatedPollsNewRoute
   AuthenticatedInboxIndexRoute: typeof AuthenticatedInboxIndexRoute
@@ -398,6 +418,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedChannelsRoute: AuthenticatedChannelsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedStudioRoute: AuthenticatedStudioRoute,
   AuthenticatedInboxIdRoute: AuthenticatedInboxIdRoute,
   AuthenticatedPollsNewRoute: AuthenticatedPollsNewRoute,
   AuthenticatedInboxIndexRoute: AuthenticatedInboxIndexRoute,

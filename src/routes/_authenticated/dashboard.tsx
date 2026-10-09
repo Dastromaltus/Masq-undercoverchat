@@ -46,7 +46,8 @@ function Dashboard() {
           <Button variant="secondary" size="sm" onClick={async () => { await navigator.clipboard.writeText(url); toast.success(t.common.copied); }}>
             <Copy aria-hidden /> {t.common.copy}
           </Button>
-          <Button variant="secondary" size="sm" onClick={share}><Share2 aria-hidden /> Share</Button>
+          <Button variant="secondary" size="sm" onClick={share}><Share2 aria-hidden /> {t.studio.share}</Button>
+          <Button asChild variant="secondary" size="sm"><Link to="/studio" search={{ kind: "question" }}>{t.inbox.share}</Link></Button>
         </div>
         <p className="mt-3 text-xs opacity-80">{t.dashboard.shareHint}</p>
       </section>

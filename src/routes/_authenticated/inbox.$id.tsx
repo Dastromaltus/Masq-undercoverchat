@@ -101,7 +101,7 @@ function MessageDetail() {
 
       <div className="grid grid-cols-2 gap-2">
         <Button variant="secondary" onClick={toggleArchive}><Archive aria-hidden />{m.archived ? t.inbox.unarchive : t.inbox.archive}</Button>
-        <Button variant="secondary" disabled title={t.common.soon}><Share2 aria-hidden />{t.inbox.share}</Button>
+        <Button asChild variant="secondary"><Link to="/studio" search={{ kind: "message", id }}><Share2 aria-hidden />{t.inbox.share}</Link></Button>
         <ReportDialog messageId={id} trigger={<Button variant="secondary"><Flag aria-hidden />{t.inbox.report}</Button>} />
         <AlertDialog>
           <AlertDialogTrigger asChild><Button variant="secondary"><Ban aria-hidden />{t.inbox.block}</Button></AlertDialogTrigger>
