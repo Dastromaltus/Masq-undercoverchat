@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Copy, Image as ImageIcon, Lock } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -27,7 +27,8 @@ function PollPage() {
   const { t, lang } = useI18n();
   const { session } = useAuth();
   const qc = useQueryClient();
-  const q = useQuery({ ...pollQuery(id), enabled: true, queryKey: ["poll", id, !!session] });
+  const q = useQuery(pollQuery(id));
+  useEffect(() => { qc.invalidateQueries({ queryKey: ["poll", id] }); }, [session, id, qc]);
   const [sel, setSel] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
 

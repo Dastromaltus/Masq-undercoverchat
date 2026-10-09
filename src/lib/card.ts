@@ -83,7 +83,7 @@ export async function renderCard(canvas: HTMLCanvasElement, c: CardContent, tpl:
       ctx.fillStyle = p.barBg; roundRect(ctx, pad + 60, y, inner, 100, 30);
       ctx.fillStyle = p.bar; if (r.pct > 0) roundRect(ctx, pad + 60, y, Math.max(60, (inner * r.pct) / 100), 100, 30);
       ctx.fillStyle = p.ink; ctx.font = "700 42px Manrope, sans-serif";
-      const label = wrap(ctx, r.label, inner - 220, 1)[0];
+      const label = wrap(ctx, r.label, inner - 220, 1)[0] ?? "";
       ctx.fillText(label, pad + 90, y + 64);
       ctx.textAlign = "right"; ctx.fillText(`${r.pct}%`, pad + 60 + inner - 30, y + 64); ctx.textAlign = "left";
       y += 130;
