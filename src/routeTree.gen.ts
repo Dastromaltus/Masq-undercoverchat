@@ -20,7 +20,6 @@ import { Route as SafetyRouteImport } from './routes/safety'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedChannelsRouteImport } from './routes/_authenticated/channels'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
-import { Route as AuthenticatedPollsRouteImport } from './routes/_authenticated/polls'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as UUsernameRouteImport } from './routes/u.$username'
 import { Route as AuthenticatedInboxIndexRouteImport } from './routes/_authenticated/inbox.index'
@@ -80,11 +79,6 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedPollsRoute = AuthenticatedPollsRouteImport.update({
-  id: '/polls',
-  path: '/polls',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -117,7 +111,6 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRoute
   '/channels': typeof AuthenticatedChannelsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/polls': typeof AuthenticatedPollsRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/u/$username': typeof UUsernameRoute
   '/inbox/$id': typeof AuthenticatedInboxIdRoute
@@ -134,7 +127,6 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthenticatedAdminRoute
   '/channels': typeof AuthenticatedChannelsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/polls': typeof AuthenticatedPollsRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/u/$username': typeof UUsernameRoute
   '/inbox/$id': typeof AuthenticatedInboxIdRoute
@@ -153,7 +145,6 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/channels': typeof AuthenticatedChannelsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/polls': typeof AuthenticatedPollsRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/u/$username': typeof UUsernameRoute
   '/_authenticated/inbox/$id': typeof AuthenticatedInboxIdRoute
@@ -172,7 +163,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/channels'
     | '/dashboard'
-    | '/polls'
     | '/profile'
     | '/u/$username'
     | '/inbox/$id'
@@ -189,7 +179,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/channels'
     | '/dashboard'
-    | '/polls'
     | '/profile'
     | '/u/$username'
     | '/inbox/$id'
@@ -207,7 +196,6 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/_authenticated/channels'
     | '/_authenticated/dashboard'
-    | '/_authenticated/polls'
     | '/_authenticated/profile'
     | '/u/$username'
     | '/_authenticated/inbox/$id'
@@ -305,13 +293,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/polls': {
-      id: '/_authenticated/polls'
-      path: '/polls'
-      fullPath: '/polls'
-      preLoaderRoute: typeof AuthenticatedPollsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/profile': {
       id: '/_authenticated/profile'
       path: '/profile'
@@ -347,7 +328,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedChannelsRoute: typeof AuthenticatedChannelsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedPollsRoute: typeof AuthenticatedPollsRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedInboxIdRoute: typeof AuthenticatedInboxIdRoute
   AuthenticatedInboxIndexRoute: typeof AuthenticatedInboxIndexRoute
@@ -357,7 +337,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedChannelsRoute: AuthenticatedChannelsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
-  AuthenticatedPollsRoute: AuthenticatedPollsRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedInboxIdRoute: AuthenticatedInboxIdRoute,
   AuthenticatedInboxIndexRoute: AuthenticatedInboxIndexRoute,
