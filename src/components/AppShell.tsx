@@ -110,3 +110,16 @@ export function Spinner() {
     </div>
   );
 }
+
+export function FooterLinks() {
+  const { t } = useI18n();
+  return (
+    <footer className="mt-12 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+      <Link to="/safety">{t.landing.links.safety}</Link>
+      <Link to="/pricing">{t.landing.links.pricing}</Link>
+      <Link to="/help">{t.landing.links.help}</Link>
+      <Link to="/legal">{t.landing.links.legal}</Link>
+    </footer>
+  );
+}
+

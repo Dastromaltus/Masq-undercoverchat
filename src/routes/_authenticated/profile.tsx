@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { Download, LogOut, ShieldAlert } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { Spinner, EmptyState, LangSwitch, PrivacyNotice } from "@/components/AppShell";
+import { Spinner, EmptyState, LangSwitch, PrivacyNotice, FooterLinks } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,7 +15,6 @@ import { Switch } from "@/components/ui/switch";
 import { useI18n } from "@/i18n";
 import { meQuery, publicUrl } from "@/lib/me";
 import { deleteMyAccount } from "@/lib/account.functions";
-import { FooterLinks } from "@/routes/index";
 
 export const Route = createFileRoute("/_authenticated/profile")({
   head: () => ({ meta: [{ title: "Profil — Masq" }, { name: "description", content: "Profil et paramètres de confidentialité." }, { property: "og:title", content: "Profil — Masq" }, { property: "og:description", content: "Profil et paramètres." }] }),

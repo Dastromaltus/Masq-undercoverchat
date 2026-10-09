@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { EyeOff, HandHeart, Sparkles } from "lucide-react";
-import { AppShell, PrivacyNotice } from "@/components/AppShell";
+import { AppShell, PrivacyNotice, FooterLinks } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/i18n";
 import { useAuth } from "@/hooks/use-auth";
@@ -16,18 +16,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Landing,
 });
-
-export function FooterLinks() {
-  const { t } = useI18n();
-  return (
-    <footer className="mt-12 flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
-      <Link to="/safety">{t.landing.links.safety}</Link>
-      <Link to="/pricing">{t.landing.links.pricing}</Link>
-      <Link to="/help">{t.landing.links.help}</Link>
-      <Link to="/legal">{t.landing.links.legal}</Link>
-    </footer>
-  );
-}
 
 function Landing() {
   const { t } = useI18n();
