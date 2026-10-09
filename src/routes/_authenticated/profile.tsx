@@ -51,26 +51,26 @@ function ProfilePage() {
 
   async function saveProfile() {
     const parsed = profileSchema.safeParse(form);
-    if (!parsed.success) return toast.error(parsed.error.issues[0]?.path.join(".") + " — " + t.common.error);
+    if (!parsed.success) { toast.error(parsed.error.issues[0]?.path.join(".") + " — " + t.common.error); return; }
     const v = parsed.data;
     const { error } = await supabase.from("profiles").update({
       display_name: v.display_name || null, bio: v.bio || null, avatar_url: v.avatar_url || null, instagram_url: v.instagram_url || null,
     }).eq("id", profile.id);
-    if (error) return toast.error(t.common.error);
+    if (error) { toast.error(t.common.error); return; }
     toast.success(t.common.saved);
     qc.invalidateQueries({ queryKey: ["me"] });
   }
   async function saveInbox(next = inbox) {
     const wq = next.welcome_question.trim();
-    if (!wq || wq.length > 140) return toast.error(t.common.error);
+    if (!wq || wq.length > 140) { toast.error(t.common.error); return; }
     const { error } = await supabase.from("inbox_settings").update({ ...next, welcome_question: wq, updated_at: new Date().toISOString() }).eq("user_id", profile.id);
-    if (error) return toast.error(t.common.error);
+    if (error) { toast.error(t.common.error); return; }
     toast.success(t.common.saved);
     qc.invalidateQueries({ queryKey: ["me"] });
   }
   async function exportData() {
     const { data, error } = await supabase.rpc("export_my_data");
-    if (error) return toast.error(t.common.error);
+    if (error) { toast.error(t.common.error); return; }
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);

@@ -16,7 +16,7 @@ export function ReportDialog({ messageId, trigger }: { messageId: string; trigge
     setBusy(true);
     const { error } = await supabase.rpc("report_message", { _message_id: messageId, _reason: reason, _details: details.slice(0, 1000) });
     setBusy(false);
-    if (error) return toast.error(t.common.error);
+    if (error) { toast.error(t.common.error); return; }
     toast.success(t.inbox.reported);
     setOpen(false);
     setDetails("");

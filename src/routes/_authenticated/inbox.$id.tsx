@@ -59,19 +59,19 @@ function MessageDetail() {
 
   async function toggleArchive() {
     const { error } = await supabase.from("messages").update({ archived: !m!.archived }).eq("id", id);
-    if (error) return toast.error(t.common.error);
+    if (error) { toast.error(t.common.error); return; }
     refresh();
   }
   async function remove() {
     const { error } = await supabase.from("messages").delete().eq("id", id);
-    if (error) return toast.error(t.common.error);
+    if (error) { toast.error(t.common.error); return; }
     toast.success(t.inbox.deleted);
     qc.invalidateQueries({ queryKey: ["inbox"] });
     navigate({ to: "/inbox" });
   }
   async function block() {
     const { error } = await supabase.rpc("block_message_sender", { _message_id: id });
-    if (error) return toast.error(t.common.error);
+    if (error) { toast.error(t.common.error); return; }
     toast.success(t.inbox.blocked);
   }
   async function sendReply() {
@@ -81,7 +81,7 @@ function MessageDetail() {
     const { data: u } = await supabase.auth.getUser();
     const { error } = await supabase.from("message_replies").insert({ message_id: id, author_id: u.user!.id, body });
     setBusy(false);
-    if (error) return toast.error(t.common.error);
+    if (error) { toast.error(t.common.error); return; }
     setReply("");
     refresh();
   }

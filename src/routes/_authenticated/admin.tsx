@@ -30,11 +30,11 @@ function Admin() {
   const refresh = () => ["admin-reports", "admin-pending", "admin-history"].forEach((k) => qc.invalidateQueries({ queryKey: [k] }));
   async function resolve(id: string, action: "hide" | "restore" | "dismiss") {
     const { error } = await supabase.rpc("admin_resolve_report", { _report_id: id, _action: action, _note: "" });
-    if (error) return toast.error(t.common.error); refresh();
+    if (error) { toast.error(t.common.error); return; } refresh();
   }
   async function setStatus(id: string, status: "published" | "hidden") {
     const { error } = await supabase.rpc("admin_set_message_status", { _message_id: id, _status: status, _note: "" });
-    if (error) return toast.error(t.common.error); refresh();
+    if (error) { toast.error(t.common.error); return; } refresh();
   }
 
   return (
