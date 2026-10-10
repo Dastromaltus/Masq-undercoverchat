@@ -3,4 +3,4 @@
 - [x] Phase 2: polls (masked ballots) + share-card studio (1080×1920 PNG)
 - [ ] Phase 3: consented reveal workflow + Stripe test-mode subscriptions
 - [ ] Phase 4: private channels (realtime, pseudonyms, invites) + full back-office (quotas UI, suspensions, stats, audit log viewer)
-- [ ] Paiements : connecter le compte Stripe de l'utilisateur, puis abonnements Plus/Creator/Community
+- [x] Paiements Stripe (Plus/Creator/Community) — portail client à activer côté Stripe
