@@ -12,14 +12,28 @@ import { errorCode, pollQuery } from "@/lib/polls";
 
 export const Route = createFileRoute("/p/$id")({
   staticData: { sitemap: false },
-  head: () => ({
-    meta: [
-      { title: "Sondage — Masq" },
-      { name: "description", content: "Vote à ce sondage Masq. Les votes individuels sont masqués." },
-      { property: "og:title", content: "Sondage — Masq" },
-      { property: "og:description", content: "Vote à ce sondage. Les votes individuels sont masqués." },
-    ],
-  }),
+  loader: async ({ params, context }) => {
+    try {
+      const poll = await context.queryClient.ensureQueryData(pollQuery(params.id));
+      return { question: poll?.question ?? null };
+    } catch {
+      return { question: null };
+    }
+  },
+  head: ({ loaderData }) => {
+    const q = loaderData?.question;
+    const title = q ? `${q.slice(0, 60)} — Sondage Masq` : "Sondage — Masq";
+    const desc = q ? `Vote au sondage « ${q.slice(0, 120)} » sur Masq. Les votes individuels sont masqués.` : "Vote à ce sondage Masq. Les votes individuels sont masqués.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: desc },
+        { property: "og:title", content: title },
+        { property: "og:description", content: desc },
+        { property: "og:type", content: "article" },
+      ],
+    };
+  },
   component: PollPage,
 });
 
@@ -34,9 +48,9 @@ function PollPage() {
   const [busy, setBusy] = useState(false);
 
   if (q.isLoading) return <AppShell><Spinner /></AppShell>;
-  if (q.isError) return <AppShell><EmptyState title={t.common.error} /></AppShell>;
+  if (q.isError) return <AppShell><EmptyState heading title={t.common.error} /></AppShell>;
   const p = q.data;
-  if (!p) return <AppShell><EmptyState title={t.polls.notFound} /></AppShell>;
+  if (!p) return <AppShell><EmptyState heading title={t.polls.notFound} /></AppShell>;
 
   const toggle = (oid: string) => setSel(p.multiple ? (sel.includes(oid) ? sel.filter((x) => x !== oid) : [...sel, oid]) : [oid]);
   async function vote() {

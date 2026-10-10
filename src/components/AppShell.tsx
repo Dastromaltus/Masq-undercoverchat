@@ -91,11 +91,12 @@ export function AppShell({ children }: { children: ReactNode }) {
   );
 }
 
-export function EmptyState({ title, hint }: { title: string; hint?: string }) {
+export function EmptyState({ title, hint, heading }: { title: string; hint?: string; heading?: boolean }) {
+  const Title = heading ? "h1" : "p";
   return (
     <div className="card-surface flex flex-col items-center gap-2 p-8 text-center">
       <div className="text-3xl" aria-hidden>🎭</div>
-      <p className="font-semibold">{title}</p>
+      <Title className="font-semibold">{title}</Title>
       {hint && <p className="text-sm text-muted-foreground">{hint}</p>}
     </div>
   );
