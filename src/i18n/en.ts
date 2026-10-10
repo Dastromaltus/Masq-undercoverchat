@@ -25,6 +25,7 @@ export const en: Dict = {
   },
   landing: {
     tagline: "Ask freely. Share the answers. Reveal your profile only when you decide to.",
+    seoHeading: "Anonymous questions for Instagram, without exposing your identity",
     cta: "Create my link",
     ctaSecondary: "I already have an account",
     f1t: "Identity-masked messages",

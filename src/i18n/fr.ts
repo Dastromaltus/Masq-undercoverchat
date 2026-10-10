@@ -23,6 +23,7 @@ export const fr = {
   },
   landing: {
     tagline: "Pose tes questions librement. Partage les réponses. Révèle ton profil uniquement quand tu le décides.",
+    seoHeading: "Questions anonymes pour Instagram, sans exposer ton identité",
     cta: "Créer mon lien",
     ctaSecondary: "J’ai déjà un compte",
     f1t: "Messages à identité masquée",
