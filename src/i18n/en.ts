@@ -247,7 +247,7 @@ export const en: Dict = {
   },
   pricing: {
     title: "Pricing",
-    notConfigured: "Payments not configured: subscriptions are not available yet (test mode planned in phase 3).",
+    notConfigured: "Secure payment by Stripe. Paid plans unlock extras, never basic safety.",
     perMonth: "/month, renews monthly",
     safetyFree: "No essential safety feature is paid.",
     plans: {
@@ -257,6 +257,12 @@ export const en: Dict = {
       community: { name: "Community", price: "€29.99", f: ["Multiple admins", "Multiple private channels", "Higher quotas"] },
     },
     unavailable: "Unavailable",
+    subscribe: "Subscribe",
+    current: "Your current plan",
+    manage: "Manage my subscription",
+    signInToSubscribe: "Sign in to subscribe",
+    success: "Payment confirmed, thank you!",
+    renews: "Renews on",
   },
   legal: {
     title: "Legal documents",
