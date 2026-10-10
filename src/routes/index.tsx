@@ -9,9 +9,9 @@ export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Masq — Questions à identité masquée, révélation consentie" },
-      { name: "description", content: "Pose tes questions librement. Partage les réponses. Révèle ton profil uniquement quand tu le décides." },
-      { property: "og:title", content: "Masq — Questions à identité masquée" },
+      { title: "Masq — Questions anonymes Instagram, révélation consentie" },
+      { name: "description", content: "Questions anonymes pour Instagram : reçois des messages, partage les réponses en story et révèle ton profil uniquement quand tu le décides." },
+      { property: "og:title", content: "Masq — Questions anonymes Instagram" },
       { property: "og:description", content: "Pose tes questions librement. Partage les réponses. Révèle ton profil uniquement quand tu le décides." },
     ],
   }),
@@ -36,6 +36,7 @@ function Landing() {
           {t.landing.tagline.split(". ")[0]}.
           <span className="mt-2 block text-gradient">{t.landing.tagline.split(". ").slice(1).join(". ")}</span>
         </h1>
+        <h2 className="mt-4 text-base font-semibold text-muted-foreground">{t.landing.seoHeading}</h2>
         <div className="mt-8 flex flex-col gap-3">
           {session ? (
             <Button asChild variant="hero" size="lg">
