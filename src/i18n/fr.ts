@@ -245,7 +245,7 @@ export const fr = {
   },
   pricing: {
     title: "Tarifs",
-    notConfigured: "Paiement non configuré : les abonnements ne sont pas encore disponibles (mode test prévu en phase 3).",
+    notConfigured: "Paiement sécurisé par Stripe. Les offres payantes débloquent des options, jamais la sécurité de base.",
     perMonth: "/mois, renouvellement mensuel",
     safetyFree: "Aucune fonction essentielle de sécurité n’est payante.",
     plans: {
@@ -255,6 +255,12 @@ export const fr = {
       community: { name: "Community", price: "29,99 €", f: ["Plusieurs administrateurs", "Plusieurs canaux privés", "Quotas supérieurs"] },
     },
     unavailable: "Indisponible",
+    subscribe: "S’abonner",
+    current: "Ton offre actuelle",
+    manage: "Gérer mon abonnement",
+    signInToSubscribe: "Connecte-toi pour t’abonner",
+    success: "Paiement confirmé, merci !",
+    renews: "Renouvellement le",
   },
   legal: {
     title: "Documents légaux",
