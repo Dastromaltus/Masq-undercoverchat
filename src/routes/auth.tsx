@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useI18n } from "@/i18n";
+import { lovable } from "@/integrations/lovable/index";
 
 const search = z.object({ mode: z.enum(["signin", "signup", "forgot"]).optional(), next: z.string().optional() });
 
@@ -77,6 +78,27 @@ function AuthPage() {
     }
   }
 
+  async function google() {
+    setError(null);
+    if (mode === "signup" && !adult) return setError(t.auth.ageRequired);
+    if (next) sessionStorage.setItem("masq.next", safeNext(next));
+    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/auth" });
+    if (result.error) return setError(t.common.error);
+    if (result.redirected) return;
+    navigate({ to: safeNext(next ?? sessionStorage.getItem("masq.next") ?? undefined) });
+  }
+
+  // Returning from the Google redirect: once the session exists, continue.
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) {
+        const n = sessionStorage.getItem("masq.next") ?? undefined;
+        sessionStorage.removeItem("masq.next");
+        navigate({ to: safeNext(next ?? n), replace: true });
+      }
+    });
+  }, [navigate, next]);
+
   const title = mode === "signup" ? t.auth.signUpTitle : mode === "forgot" ? t.auth.forgotTitle : t.auth.signInTitle;
 
   return (
@@ -118,6 +140,16 @@ function AuthPage() {
             {busy ? t.common.loading : mode === "signup" ? t.auth.submitSignUp : mode === "forgot" ? t.auth.sendReset : t.auth.submitSignIn}
           </Button>
         </form>
+        {mode !== "forgot" && (
+          <div className="mt-4 space-y-2">
+            <div className="flex items-center gap-3 text-xs text-muted-foreground"><span className="h-px flex-1 bg-border" />{t.auth.or}<span className="h-px flex-1 bg-border" /></div>
+            <Button type="button" variant="outline" className="w-full" onClick={google}>
+              <svg viewBox="0 0 24 24" aria-hidden className="size-4"><path fill="currentColor" d="M21.35 11.1H12v2.9h5.35c-.25 1.5-1.7 4.4-5.35 4.4-3.2 0-5.85-2.65-5.85-5.9S8.8 6.6 12 6.6c1.85 0 3.05.8 3.75 1.45l2.55-2.45C16.7 4.1 14.55 3 12 3 7 3 3 7 3 12s4 9 9 9c5.2 0 8.65-3.65 8.65-8.8 0-.6-.05-1.05-.3-1.1z"/></svg>
+              {t.auth.google}
+            </Button>
+            {mode === "signup" && <p className="text-center text-xs text-muted-foreground">{t.auth.googleNote}</p>}
+          </div>
+        )}
         <div className="mt-4 flex flex-col items-center gap-2 text-sm">
           {mode !== "signup" && <button className="text-primary" onClick={() => setMode("signup")}>{t.auth.toSignUp}</button>}
           {mode !== "signin" && <button className="text-primary" onClick={() => setMode("signin")}>{t.auth.toSignIn}</button>}

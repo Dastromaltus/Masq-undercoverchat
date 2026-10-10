@@ -60,6 +60,10 @@ export const en: Dict = {
     updatePassword: "Update",
     passwordUpdated: "Password updated.",
     invalid: "Incorrect email or password.",
+    or: "or",
+    google: "Continue with Google",
+    googleNote: "Tick the 18+ declaration first. A temporary username is created: you can change it in Profile.",
+    usernameSaved: "Username updated.",
     weak: "Password must be at least 8 characters.",
   },
   dashboard: {

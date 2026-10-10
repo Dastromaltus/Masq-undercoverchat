@@ -597,6 +597,7 @@ export type Database = {
         Args: { _allow_reveal?: boolean; _body: string; _username: string }
         Returns: string
       }
+      set_username: { Args: { _username: string }; Returns: undefined }
       username_available: { Args: { _username: string }; Returns: boolean }
     }
     Enums: {

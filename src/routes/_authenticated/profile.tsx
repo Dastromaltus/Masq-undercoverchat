@@ -37,10 +37,12 @@ function ProfilePage() {
   const [form, setForm] = useState({ display_name: "", bio: "", avatar_url: "", instagram_url: "" });
   const [inbox, setInbox] = useState({ welcome_question: "", accepting: true, allow_reveal_requests: true });
   const [confirmText, setConfirmText] = useState("");
+  const [uname, setUname] = useState("");
 
   useEffect(() => {
     if (!me.data) return;
     const p = me.data.profile, s = me.data.settings;
+    setUname(p.username);
     setForm({ display_name: p.display_name ?? "", bio: p.bio ?? "", avatar_url: p.avatar_url ?? "", instagram_url: p.instagram_url ?? "" });
     setInbox({ welcome_question: s.welcome_question, accepting: s.accepting, allow_reveal_requests: s.allow_reveal_requests });
   }, [me.data]);
@@ -49,6 +51,12 @@ function ProfilePage() {
   if (!me.data) return <EmptyState title={t.common.error} />;
   const { profile, isStaff } = me.data;
 
+  async function saveUsername() {
+    const { error } = await supabase.rpc("set_username", { _username: uname });
+    if (error) { toast.error(t.auth.usernameTaken); return; }
+    toast.success(t.auth.usernameSaved);
+    qc.invalidateQueries({ queryKey: ["me"] });
+  }
   async function saveProfile() {
     const parsed = profileSchema.safeParse(form);
     if (!parsed.success) { toast.error(parsed.error.issues[0]?.path.join(".") + " — " + t.common.error); return; }
@@ -106,6 +114,12 @@ function ProfilePage() {
           {publicUrl(profile.username).replace(/^https?:\/\//, "")}
         </Link>
         <p className="text-xs text-muted-foreground">{t.profile.ageStatus}</p>
+        <div className="space-y-1.5"><Label htmlFor="un">{t.auth.username}</Label>
+          <div className="flex gap-2">
+            <Input id="un" maxLength={20} value={uname} onChange={(e) => setUname(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))} />
+            <Button variant="secondary" onClick={saveUsername} disabled={uname === profile.username || uname.length < 3}>{t.common.save}</Button>
+          </div>
+          <p className="text-xs text-muted-foreground">{t.auth.usernameHint}</p></div>
         <div className="space-y-1.5"><Label htmlFor="dn">{t.profile.displayName}</Label>
           <Input id="dn" maxLength={40} value={form.display_name} onChange={(e) => setForm({ ...form, display_name: e.target.value })} /></div>
         <div className="space-y-1.5"><Label htmlFor="bio">{t.profile.bio}</Label>
