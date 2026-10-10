@@ -10,6 +10,7 @@ import { useI18n } from "@/i18n";
 import { errorCode } from "@/lib/polls";
 
 export const Route = createFileRoute("/_authenticated/polls/new")({
+  staticData: { sitemap: false },
   head: () => ({ meta: [{ title: "Nouveau sondage — Masq" }, { name: "description", content: "Crée un sondage à votes masqués." }, { property: "og:title", content: "Nouveau sondage — Masq" }, { property: "og:description", content: "Crée un sondage." }] }),
   component: NewPoll,
 });

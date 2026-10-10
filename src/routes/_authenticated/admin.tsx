@@ -8,6 +8,7 @@ import { useI18n } from "@/i18n";
 import { meQuery } from "@/lib/me";
 
 export const Route = createFileRoute("/_authenticated/admin")({
+  staticData: { sitemap: false },
   head: () => ({ meta: [{ title: "Back-office — Masq" }, { name: "description", content: "Modération de la plateforme." }, { property: "og:title", content: "Back-office — Masq" }, { property: "og:description", content: "Modération." }] }),
   component: Admin,
 });

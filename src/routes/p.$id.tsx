@@ -11,6 +11,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { errorCode, pollQuery } from "@/lib/polls";
 
 export const Route = createFileRoute("/p/$id")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { title: "Sondage — Masq" },

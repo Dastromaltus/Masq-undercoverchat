@@ -14,6 +14,7 @@ import { lovable } from "@/integrations/lovable/index";
 const search = z.object({ mode: z.enum(["signin", "signup", "forgot"]).optional(), next: z.string().optional() });
 
 export const Route = createFileRoute("/auth")({
+  staticData: { sitemap: false },
   validateSearch: search,
   head: () => ({
     meta: [

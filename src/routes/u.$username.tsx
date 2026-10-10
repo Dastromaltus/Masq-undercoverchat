@@ -11,6 +11,7 @@ import { useI18n } from "@/i18n";
 import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/u/$username")({
+  staticData: { sitemap: false },
   head: ({ params }) => ({
     meta: [
       { title: `@${params.username} sur Masq` },

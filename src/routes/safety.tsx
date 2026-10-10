@@ -3,6 +3,7 @@ import { AppShell, FooterLinks, PrivacyNotice } from "@/components/AppShell";
 import { useI18n } from "@/i18n";
 
 export const Route = createFileRoute("/safety")({
+  staticData: { sitemap: true },
   head: () => ({ meta: [{ title: "Sécurité et confidentialité — Masq" }, { name: "description", content: "Comment Masq protège ton identité, et ses limites." }, { property: "og:title", content: "Sécurité et confidentialité — Masq" }, { property: "og:description", content: "Comment Masq protège ton identité, et ses limites." }] }),
   component: () => {
     const { t } = useI18n();

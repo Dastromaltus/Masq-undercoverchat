@@ -17,6 +17,7 @@ import { meQuery, publicUrl } from "@/lib/me";
 import { deleteMyAccount } from "@/lib/account.functions";
 
 export const Route = createFileRoute("/_authenticated/profile")({
+  staticData: { sitemap: false },
   head: () => ({ meta: [{ title: "Profil — Masq" }, { name: "description", content: "Profil et paramètres de confidentialité." }, { property: "og:title", content: "Profil — Masq" }, { property: "og:description", content: "Profil et paramètres." }] }),
   component: ProfilePage,
 });
