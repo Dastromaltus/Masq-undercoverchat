@@ -58,6 +58,10 @@ export const fr = {
     updatePassword: "Mettre à jour",
     passwordUpdated: "Mot de passe mis à jour.",
     invalid: "Email ou mot de passe incorrect.",
+    or: "ou",
+    google: "Continuer avec Google",
+    googleNote: "Coche d’abord la déclaration 18+. Un pseudo provisoire est créé : tu pourras le changer dans Profil.",
+    usernameSaved: "Pseudo mis à jour.",
     weak: "Le mot de passe doit contenir au moins 8 caractères.",
   },
   dashboard: {
