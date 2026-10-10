@@ -35,6 +35,9 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
+    // After a new deploy, an already-open tab may request old file names that no
+    // longer exist. Reload once to fetch the current version instead of a blank screen.
+    if (isStaleChunkError(error) && reloadOnce()) return;
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
   return (
@@ -54,6 +57,21 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
       </div>
     </div>
   );
+}
+
+function isStaleChunkError(error: unknown) {
+  const msg = error instanceof Error ? error.message : String(error ?? "");
+  return /Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module/i.test(msg);
+}
+
+function reloadOnce() {
+  if (typeof window === "undefined") return false;
+  const key = "masq.chunk-reload";
+  const last = Number(sessionStorage.getItem(key) ?? 0);
+  if (Date.now() - last < 10_000) return false; // avoid reload loops
+  sessionStorage.setItem(key, String(Date.now()));
+  window.location.reload();
+  return true;
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
