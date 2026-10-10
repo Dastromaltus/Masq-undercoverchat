@@ -17,6 +17,7 @@ import { Route as LegalRouteImport } from './routes/legal'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SafetyRouteImport } from './routes/safety'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedChannelsRouteImport } from './routes/_authenticated/channels'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
@@ -66,6 +67,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
 const SafetyRoute = SafetyRouteImport.update({
   id: '/safety',
   path: '/safety',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -132,6 +138,7 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/reset-password': typeof ResetPasswordRoute
   '/safety': typeof SafetyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/channels': typeof AuthenticatedChannelsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -152,6 +159,7 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/reset-password': typeof ResetPasswordRoute
   '/safety': typeof SafetyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/channels': typeof AuthenticatedChannelsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/reset-password': typeof ResetPasswordRoute
   '/safety': typeof SafetyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/channels': typeof AuthenticatedChannelsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
@@ -196,6 +205,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/reset-password'
     | '/safety'
+    | '/sitemap.xml'
     | '/admin'
     | '/channels'
     | '/dashboard'
@@ -216,6 +226,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/reset-password'
     | '/safety'
+    | '/sitemap.xml'
     | '/admin'
     | '/channels'
     | '/dashboard'
@@ -237,6 +248,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/reset-password'
     | '/safety'
+    | '/sitemap.xml'
     | '/_authenticated/admin'
     | '/_authenticated/channels'
     | '/_authenticated/dashboard'
@@ -259,6 +271,7 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   SafetyRoute: typeof SafetyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PIdRoute: typeof PIdRoute
   UUsernameRoute: typeof UUsernameRoute
 }
@@ -319,6 +332,13 @@ declare module '@tanstack/react-router' {
       path: '/safety'
       fullPath: '/safety'
       preLoaderRoute: typeof SafetyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -437,6 +457,7 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   SafetyRoute: SafetyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   PIdRoute: PIdRoute,
   UUsernameRoute: UUsernameRoute,
 }

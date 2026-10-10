@@ -15,6 +15,7 @@ import { ReportDialog } from "@/components/ReportDialog";
 import { useI18n } from "@/i18n";
 
 export const Route = createFileRoute("/_authenticated/inbox/$id")({
+  staticData: { sitemap: false },
   head: () => ({ meta: [{ title: "Message — Masq" }, { name: "description", content: "Détail d’un message reçu." }, { property: "og:title", content: "Message — Masq" }, { property: "og:description", content: "Détail d’un message reçu." }] }),
   component: MessageDetail,
 });

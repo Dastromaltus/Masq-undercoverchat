@@ -11,6 +11,7 @@ import { useI18n } from "@/i18n";
 import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/u/$username")({
+  staticData: { sitemap: false },
   head: ({ params }) => ({
     meta: [
       { title: `@${params.username} sur Masq` },
@@ -60,9 +61,9 @@ function PublicProfile() {
   }
 
   if (q.isLoading) return <AppShell><Spinner /></AppShell>;
-  if (q.isError) return <AppShell><EmptyState title={t.common.error} /></AppShell>;
+  if (q.isError) return <AppShell><EmptyState heading title={t.common.error} /></AppShell>;
   const p = q.data;
-  if (!p) return <AppShell><EmptyState title={t.send.notFound} /></AppShell>;
+  if (!p) return <AppShell><EmptyState heading title={t.send.notFound} /></AppShell>;
 
   return (
     <AppShell>

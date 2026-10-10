@@ -6,6 +6,7 @@ import { useI18n } from "@/i18n";
 import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Masq — Questions à identité masquée, révélation consentie" },

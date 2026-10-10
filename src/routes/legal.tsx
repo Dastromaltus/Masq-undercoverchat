@@ -3,6 +3,7 @@ import { AppShell, FooterLinks } from "@/components/AppShell";
 import { useI18n } from "@/i18n";
 
 export const Route = createFileRoute("/legal")({
+  staticData: { sitemap: true },
   head: () => ({ meta: [{ title: "Documents légaux (brouillons) — Masq" }, { name: "description", content: "Mentions légales, confidentialité et conditions — brouillons à valider." }, { property: "og:title", content: "Documents légaux — Masq" }, { property: "og:description", content: "Brouillons à faire valider." }] }),
   component: () => {
     const { t } = useI18n();

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useI18n } from "@/i18n";
 
 export const Route = createFileRoute("/pricing")({
+  staticData: { sitemap: true },
   head: () => ({ meta: [{ title: "Tarifs — Masq" }, { name: "description", content: "Offres Gratuit, Plus, Creator et Community." }, { property: "og:title", content: "Tarifs — Masq" }, { property: "og:description", content: "Offres Gratuit, Plus, Creator et Community." }] }),
   component: Pricing,
 });

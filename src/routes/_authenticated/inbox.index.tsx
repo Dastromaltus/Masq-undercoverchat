@@ -6,6 +6,7 @@ import { Spinner, EmptyState } from "@/components/AppShell";
 import { useI18n } from "@/i18n";
 
 export const Route = createFileRoute("/_authenticated/inbox/")({
+  staticData: { sitemap: false },
   head: () => ({ meta: [{ title: "Messages — Masq" }, { name: "description", content: "Ta boîte de réception privée." }, { property: "og:title", content: "Messages — Masq" }, { property: "og:description", content: "Ta boîte de réception privée." }] }),
   component: Inbox,
 });

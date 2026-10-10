@@ -7,3 +7,4 @@ Disallow: /admin
 Disallow: /polls
 Disallow: /channels
 Disallow: /auth
+Sitemap: https://whisper-mask-chat.lovable.app/sitemap.xml
