@@ -13,7 +13,7 @@ import type { PlanKey } from "@/lib/plans";
 
 export const Route = createFileRoute("/pricing")({
   staticData: { sitemap: true },
-  validateSearch: (s: Record<string, unknown>): { checkout?: string } => (typeof s.checkout === "string" ? { checkout: s.checkout } : {}),
+  validateSearch: (s: Record<string, unknown>): { checkout?: string } => (typeof s['checkout'] === "string" ? { checkout: s['checkout'] } : {}),
   head: () => ({ meta: [{ title: "Tarifs — Masq" }, { name: "description", content: "Offres Gratuit, Plus, Creator et Community." }, { property: "og:title", content: "Tarifs — Masq" }, { property: "og:description", content: "Offres Gratuit, Plus, Creator et Community." }] }),
   component: Pricing,
 });

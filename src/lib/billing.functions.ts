@@ -36,8 +36,7 @@ export const createCheckout = createServerFn({ method: "POST" })
     const o = origin();
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
-      customer,
-      customer_email: customer ? undefined : email,
+      ...(customer ? { customer } : { customer_email: email }),
       client_reference_id: context.userId,
       line_items: [{ price: PLANS[data.plan].priceId, quantity: 1 }],
       success_url: `${o}/pricing?checkout=success`,
