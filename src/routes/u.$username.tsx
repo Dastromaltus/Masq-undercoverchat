@@ -9,6 +9,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useI18n } from "@/i18n";
 import { useAuth } from "@/hooks/use-auth";
+import { HintConsent } from "@/components/HintConsent";
+import { hintPayload, type HintGender, type HintRegion } from "@/lib/message-hints";
 
 export const Route = createFileRoute("/u/$username")({
   staticData: { sitemap: false },
@@ -39,6 +41,9 @@ function PublicProfile() {
   });
   const [body, setBody] = useState("");
   const [mode, setMode] = useState<"A" | "B">("A");
+  const [hintConsent, setHintConsent] = useState(false);
+  const [hintGender, setHintGender] = useState<HintGender | "">("");
+  const [hintRegion, setHintRegion] = useState<HintRegion | "">("");
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +54,7 @@ function PublicProfile() {
     if (!body.trim()) return setError(t.send.errors.EMPTY);
     if (body.length > MAX) return setError(t.send.errors.TOO_LONG);
     setBusy(true);
-    const { error } = await supabase.rpc("send_message", { _username: username, _body: body, _allow_reveal: mode === "B" });
+    const { error } = await supabase.rpc("send_message_with_hints", { _username: username, _body: body, _allow_reveal: mode === "B", ...hintPayload(hintConsent, hintGender, hintRegion) });
     setBusy(false);
     if (error) {
       const code = Object.keys(t.send.errors).find((k) => error.message.includes(k)) as keyof typeof t.send.errors | undefined;
@@ -58,6 +63,9 @@ function PublicProfile() {
     setSent(true);
     setBody("");
     setMode("A");
+    setHintConsent(false);
+    setHintGender("");
+    setHintRegion("");
   }
 
   if (q.isLoading) return <AppShell><Spinner /></AppShell>;
@@ -114,6 +122,7 @@ function PublicProfile() {
                   </label>
                 ))}
               </RadioGroup>
+              <HintConsent consent={hintConsent} gender={hintGender} region={hintRegion} onConsent={setHintConsent} onGender={setHintGender} onRegion={setHintRegion} />
               {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
               <Button type="submit" variant="hero" className="w-full" disabled={busy}>
                 <Send aria-hidden /> {busy ? t.common.loading : t.send.submit}

@@ -4,10 +4,8 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { PLANS, type PlanKey } from "@/lib/plans";
 
 async function stripeClient() {
-  const key = process.env["STRIPE_SECRET_KEY"];
-  if (!key) throw new Error("STRIPE_NOT_CONFIGURED");
-  const { default: Stripe } = await import("stripe");
-  return new Stripe(key, { httpClient: Stripe.createFetchHttpClient() });
+  const { stripeClient: client } = await import("@/lib/billing.server");
+  return client();
 }
 
 function origin() {
@@ -49,18 +47,9 @@ export const createCheckout = createServerFn({ method: "POST" })
 export const getSubscription = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const stripe = await stripeClient();
     const email = await userEmail(context.supabase as never);
-    const customers = await stripe.customers.list({ email, limit: 1 });
-    const customer = customers.data[0]?.id;
-    if (!customer) return { plan: null as PlanKey | null, periodEnd: null as string | null };
-    const subs = await stripe.subscriptions.list({ customer, status: "active", limit: 1 });
-    const sub = subs.data[0];
-    if (!sub) return { plan: null as PlanKey | null, periodEnd: null as string | null };
-    const item = sub.items.data[0];
-    const plan = (Object.keys(PLANS) as PlanKey[]).find((k) => PLANS[k].priceId === item?.price.id) ?? null;
-    const end = item?.current_period_end;
-    return { plan, periodEnd: end ? new Date(end * 1000).toISOString() : null };
+    const { subscriptionForEmail } = await import("@/lib/billing.server");
+    return subscriptionForEmail(email);
   });
 
 export const createPortal = createServerFn({ method: "POST" })
