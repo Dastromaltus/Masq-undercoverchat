@@ -123,6 +123,35 @@ export type Database = {
           },
         ]
       }
+      message_hints: {
+        Row: {
+          consented_at: string
+          gender: string | null
+          message_id: string
+          region: string | null
+        }
+        Insert: {
+          consented_at?: string
+          gender?: string | null
+          message_id: string
+          region?: string | null
+        }
+        Update: {
+          consented_at?: string
+          gender?: string | null
+          message_id?: string
+          region?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_hints_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: true
+            referencedRelation: "message_sender_links"
+            referencedColumns: ["message_id"]
+          },
+        ]
+      }
       message_replies: {
         Row: {
           author_id: string
@@ -569,6 +598,10 @@ export type Database = {
         Returns: string
       }
       export_my_data: { Args: never; Returns: Json }
+      get_message_hint_status: {
+        Args: { _message_id: string }
+        Returns: number
+      }
       get_poll: { Args: { _poll_id: string }; Returns: Json }
       get_public_profile: {
         Args: { _username: string }
@@ -589,12 +622,27 @@ export type Database = {
         Returns: boolean
       }
       purge_my_data: { Args: never; Returns: undefined }
+      read_paid_message_hints: {
+        Args: { _message_id: string; _recipient_id: string }
+        Returns: Json
+      }
       report_message: {
         Args: { _details: string; _message_id: string; _reason: string }
         Returns: undefined
       }
       send_message: {
         Args: { _allow_reveal?: boolean; _body: string; _username: string }
+        Returns: string
+      }
+      send_message_with_hints: {
+        Args: {
+          _allow_reveal?: boolean
+          _body: string
+          _hint_consent?: boolean
+          _hint_gender?: string
+          _hint_region?: string
+          _username: string
+        }
         Returns: string
       }
       set_username: { Args: { _username: string }; Returns: undefined }
