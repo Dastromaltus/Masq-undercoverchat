@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { ReportDialog } from "@/components/ReportDialog";
 import { useI18n } from "@/i18n";
+import { MessageHints } from "@/components/MessageHints";
 
 export const Route = createFileRoute("/_authenticated/inbox/$id")({
   staticData: { sitemap: false },
@@ -59,7 +60,8 @@ function MessageDetail() {
   const refresh = () => { qc.invalidateQueries({ queryKey: ["message", id] }); qc.invalidateQueries({ queryKey: ["inbox"] }); };
 
   async function toggleArchive() {
-    const { error } = await supabase.from("messages").update({ archived: !m!.archived }).eq("id", id);
+    if (!m) return;
+    const { error } = await supabase.from("messages").update({ archived: !m.archived }).eq("id", id);
     if (error) { toast.error(t.common.error); return; }
     refresh();
   }
@@ -80,7 +82,8 @@ function MessageDetail() {
     if (!body || body.length > 1000) return;
     setBusy(true);
     const { data: u } = await supabase.auth.getUser();
-    const { error } = await supabase.from("message_replies").insert({ message_id: id, author_id: u.user!.id, body });
+    if (!u.user) { setBusy(false); toast.error(t.common.error); return; }
+    const { error } = await supabase.from("message_replies").insert({ message_id: id, author_id: u.user.id, body });
     setBusy(false);
     if (error) { toast.error(t.common.error); return; }
     setReply("");
@@ -99,6 +102,7 @@ function MessageDetail() {
           <p className="whitespace-pre-wrap break-words font-display text-xl font-semibold">{m.body}</p>
         </div>
       </article>
+      <MessageHints messageId={id} />
 
       <div className="grid grid-cols-2 gap-2">
         <Button variant="secondary" onClick={toggleArchive}><Archive aria-hidden />{m.archived ? t.inbox.unarchive : t.inbox.archive}</Button>

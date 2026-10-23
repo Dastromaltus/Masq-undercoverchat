@@ -29,6 +29,13 @@
       "when": 1791648934132,
       "tag": "0003_set_username",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792782974799,
+      "tag": "0004_voluntary_message_hints",
+      "breakpoints": true
     }
   ]
 }
