@@ -1,7 +1,3 @@
-# Whisper Mask Chat
-
-Crée une application web mobile-first appelée « Masq », disponible en français et en anglais.
-
 OBJECTIF
 
 Masq permet :
