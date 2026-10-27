@@ -54,7 +54,12 @@ function PublicProfile() {
     if (!body.trim()) return setError(t.send.errors.EMPTY);
     if (body.length > MAX) return setError(t.send.errors.TOO_LONG);
     setBusy(true);
-    const { error } = await supabase.rpc("send_message_with_hints", { _username: username, _body: body, _allow_reveal: mode === "B", ...hintPayload(hintConsent, hintGender, hintRegion) });
+    const hints = hintPayload(hintConsent, hintGender, hintRegion);
+    const { error } = await supabase.rpc("send_message_with_hints", {
+      _username: username, _body: body, _allow_reveal: mode === "B", _hint_consent: hints._hint_consent,
+      ...(hints._hint_gender ? { _hint_gender: hints._hint_gender } : {}),
+      ...(hints._hint_region ? { _hint_region: hints._hint_region } : {}),
+    });
     setBusy(false);
     if (error) {
       const code = Object.keys(t.send.errors).find((k) => error.message.includes(k)) as keyof typeof t.send.errors | undefined;
