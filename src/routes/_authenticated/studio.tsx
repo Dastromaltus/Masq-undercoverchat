@@ -17,7 +17,7 @@ import { renderCard, hasPII, maskPII, type CardContent, type Template } from "@/
 export const Route = createFileRoute("/_authenticated/studio")({
   staticData: { sitemap: false },
   validateSearch: z.object({ kind: z.enum(["question", "message", "poll"]).default("question"), id: z.string().uuid().optional() }),
-  head: () => ({ meta: [{ title: "Studio de partage — Masq" }, { name: "description", content: "Crée une carte story 1080×1920." }, { property: "og:title", content: "Studio — Masq" }, { property: "og:description", content: "Cartes pour stories Instagram." }] }),
+  head: () => ({ meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "Studio de partage — Masq" }, { name: "description", content: "Crée une carte story 1080×1920." }, { property: "og:title", content: "Studio — Masq" }, { property: "og:description", content: "Cartes pour stories Instagram." }] }),
   component: Studio,
 });
 

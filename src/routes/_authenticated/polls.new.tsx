@@ -11,7 +11,7 @@ import { errorCode } from "@/lib/polls";
 
 export const Route = createFileRoute("/_authenticated/polls/new")({
   staticData: { sitemap: false },
-  head: () => ({ meta: [{ title: "Nouveau sondage — Masq" }, { name: "description", content: "Crée un sondage à votes masqués." }, { property: "og:title", content: "Nouveau sondage — Masq" }, { property: "og:description", content: "Crée un sondage." }] }),
+  head: () => ({ meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "Nouveau sondage — Masq" }, { name: "description", content: "Crée un sondage à votes masqués." }, { property: "og:title", content: "Nouveau sondage — Masq" }, { property: "og:description", content: "Crée un sondage." }] }),
   component: NewPoll,
 });
 

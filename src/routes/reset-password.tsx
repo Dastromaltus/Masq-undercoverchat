@@ -11,7 +11,7 @@ import { useI18n } from "@/i18n";
 export const Route = createFileRoute("/reset-password")({
   staticData: { sitemap: false },
   head: () => ({
-    meta: [
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
       { title: "Nouveau mot de passe — Masq" },
       { name: "description", content: "Définis un nouveau mot de passe pour ton compte Masq." },
       { property: "og:title", content: "Nouveau mot de passe — Masq" },

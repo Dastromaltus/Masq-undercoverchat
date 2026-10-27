@@ -18,7 +18,7 @@ import { deleteMyAccount } from "@/lib/account.functions";
 
 export const Route = createFileRoute("/_authenticated/profile")({
   staticData: { sitemap: false },
-  head: () => ({ meta: [{ title: "Profil — Masq" }, { name: "description", content: "Profil et paramètres de confidentialité." }, { property: "og:title", content: "Profil — Masq" }, { property: "og:description", content: "Profil et paramètres." }] }),
+  head: () => ({ meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "Profil — Masq" }, { name: "description", content: "Profil et paramètres de confidentialité." }, { property: "og:title", content: "Profil — Masq" }, { property: "og:description", content: "Profil et paramètres." }] }),
   component: ProfilePage,
 });
 

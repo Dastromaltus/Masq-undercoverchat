@@ -17,7 +17,7 @@ export const Route = createFileRoute("/auth")({
   staticData: { sitemap: false },
   validateSearch: search,
   head: () => ({
-    meta: [
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
       { title: "Connexion — Masq" },
       { name: "description", content: "Connecte-toi ou crée ton compte Masq." },
       { property: "og:title", content: "Connexion — Masq" },

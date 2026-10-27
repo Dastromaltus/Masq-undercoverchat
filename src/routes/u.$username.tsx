@@ -15,7 +15,7 @@ import { hintPayload, type HintGender, type HintRegion } from "@/lib/message-hin
 export const Route = createFileRoute("/u/$username")({
   staticData: { sitemap: false },
   head: ({ params }) => ({
-    meta: [
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
       { title: `@${params.username} sur Masq` },
       { name: "description", content: `Envoie un message à @${params.username} sur Masq — ton identité n’est pas affichée.` },
       { property: "og:title", content: `@${params.username} sur Masq` },
