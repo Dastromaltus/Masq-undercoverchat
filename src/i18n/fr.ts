@@ -1,4 +1,16 @@
 export const fr = {
+  hints: {
+    title: "Indices sur l’expéditeur", optional: "Indices facultatifs",
+    consent: "J’autorise le destinataire à consulter les indices que je choisis pour ce message, avec un abonnement payant.",
+    senderNote: "Ne partage que tes propres informations. Rien n’est déduit de ton message, de ton compte ou de ta connexion. Ces indices peuvent faciliter ta reconnaissance ; ton profil reste masqué.",
+    genderLabel: "Genre déclaré", regionLabel: "Grande région déclarée", notShared: "Ne pas partager",
+    genders: { man: "Homme", woman: "Femme", nonbinary: "Non binaire" },
+    regions: { antilles: "Antilles", europe: "Europe", north_america: "Amérique du Nord", south_america: "Amérique du Sud", africa: "Afrique", asia: "Asie", oceania: "Océanie" },
+    available: "indice(s) volontairement partagé(s) pour ce message.",
+    offer: "Accessible avec Plus, Creator ou Community, à partir de 4,99 €/mois. Seulement les indices autorisés, jamais l’identité.",
+    unlock: "Voir les offres pour consulter les indices", none: "Aucun indice partagé pour ce message. Un abonnement n’en créera pas.",
+    disclaimer: "Informations déclarées par l’expéditeur, non vérifiées. Elles ne prouvent ni son identité ni sa localisation.", retry: "Réessayer",
+  },
   common: {
     appName: "Masq",
     loading: "Chargement…",
@@ -238,7 +250,7 @@ export const fr = {
     q1: "Comment signaler un message ?",
     a1: "Ouvre le message dans ta boîte, puis appuie sur « Signaler ». Tu peux aussi bloquer l’auteur sans connaître son identité.",
     q2: "Puis-je savoir qui m’a écrit ?",
-    a2: "Non, sauf si l’expéditeur a autorisé une demande de présentation et l’accepte explicitement.",
+    a2: "Un abonnement ne révèle jamais l’identité. Il permet de consulter les indices généraux volontairement partagés pour un message, non vérifiés. Une présentation nécessite toujours l’accord explicite de l’expéditeur.",
     q3: "Comment arrêter de recevoir des messages ?",
     a3: "Dans Profil, désactive « Recevoir des messages ».",
     urgent: "Si quelqu’un est en danger immédiat, contacte les services d’urgence (112 en Europe).",
@@ -250,9 +262,9 @@ export const fr = {
     safetyFree: "Aucune fonction essentielle de sécurité n’est payante.",
     plans: {
       free: { name: "Gratuit", price: "0 €", f: ["Messages avec quotas", "Sondages simples", "Partage avec la marque Masq", "Blocage, signalement, confidentialité et suppression"] },
-      plus: { name: "Plus", price: "4,99 €", f: ["Personnalisation des cartes", "Classement avancé des messages", "Quotas supérieurs", "Demandes de présentation (toujours avec accord de l’expéditeur)"] },
-      creator: { name: "Creator", price: "12,99 €", f: ["Statistiques agrégées", "Sondages avancés", "Exports", "Outils de gestion de communauté"] },
-      community: { name: "Community", price: "29,99 €", f: ["Plusieurs administrateurs", "Plusieurs canaux privés", "Quotas supérieurs"] },
+      plus: { name: "Plus", price: "4,99 €", f: ["Indices volontaires : genre et grande région déclarés, si partagés", "Aucune identité révélée ; indices non vérifiés"] },
+      creator: { name: "Creator", price: "12,99 €", f: ["Indices volontaires : genre et grande région déclarés, si partagés", "Aucune identité révélée ; indices non vérifiés"] },
+      community: { name: "Community", price: "29,99 €", f: ["Indices volontaires : genre et grande région déclarés, si partagés", "Aucune identité révélée ; indices non vérifiés"] },
     },
     unavailable: "Indisponible",
     subscribe: "S’abonner",
