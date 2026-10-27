@@ -17,7 +17,7 @@ import { MessageHints } from "@/components/MessageHints";
 
 export const Route = createFileRoute("/_authenticated/inbox/$id")({
   staticData: { sitemap: false },
-  head: () => ({ meta: [{ title: "Message — Masq" }, { name: "description", content: "Détail d’un message reçu." }, { property: "og:title", content: "Message — Masq" }, { property: "og:description", content: "Détail d’un message reçu." }] }),
+  head: () => ({ meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "Message — Masq" }, { name: "description", content: "Détail d’un message reçu." }, { property: "og:title", content: "Message — Masq" }, { property: "og:description", content: "Détail d’un message reçu." }] }),
   component: MessageDetail,
 });
 

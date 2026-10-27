@@ -1,6 +1,18 @@
 import type { Dict } from "./fr";
 
 export const en: Dict = {
+  hints: {
+    title: "Sender hints", optional: "Optional hints",
+    consent: "I allow the recipient to view the hints I choose for this message with a paid subscription.",
+    senderNote: "Only share your own information. Nothing is inferred from your message, account or connection. These hints may make you recognizable; your profile stays masked.",
+    genderLabel: "Self-declared gender", regionLabel: "Self-declared broad region", notShared: "Do not share",
+    genders: { man: "Man", woman: "Woman", nonbinary: "Non-binary" },
+    regions: { antilles: "Antilles", europe: "Europe", north_america: "North America", south_america: "South America", africa: "Africa", asia: "Asia", oceania: "Oceania" },
+    available: "hint(s) voluntarily shared for this message.",
+    offer: "Available with Plus, Creator or Community, from €4.99/month. Only authorized hints, never identity.",
+    unlock: "View plans to access hints", none: "No hints shared for this message. A subscription will not create any.",
+    disclaimer: "Self-declared, unverified information. It proves neither identity nor location.", retry: "Retry",
+  },
   common: {
     appName: "Masq",
     loading: "Loading…",
@@ -230,7 +242,7 @@ export const en: Dict = {
   safety: {
     title: "Safety & privacy",
     p1: "What others see: your public username, bio and welcome question on your /u/username page. Never your email or internal ID.",
-    p2: "When you send a message: the recipient doesn't see who you are. The platform technically keeps the link between your account and the message, in a separate store inaccessible to other users, to prevent abuse.",
+    p2: "When you send a message: your account stays masked. If you allow it for this message, a subscribed recipient can see your self-declared gender and broad region, without verification. These hints may make you recognizable. The platform keeps the account-to-message link in a separate store inaccessible to other users, to prevent abuse.",
     p3: "This is not absolute anonymity: in case of serious abuse or legal obligation, restricted and logged access may be necessary.",
     p4: "Blocking, reporting, export and account deletion are free.",
     p5: "The age declaration (18+) is not an identity verification.",
@@ -240,7 +252,7 @@ export const en: Dict = {
     q1: "How do I report a message?",
     a1: "Open the message in your inbox, then tap “Report”. You can also block the sender without learning who they are.",
     q2: "Can I find out who wrote to me?",
-    a2: "No, unless the sender allowed introduction requests and explicitly accepts one.",
+    a2: "A subscription never reveals identity. It provides access to unverified broad hints voluntarily shared for a message. An introduction always requires explicit sender consent.",
     q3: "How do I stop receiving messages?",
     a3: "In Profile, turn off “Receive messages”.",
     urgent: "If someone is in immediate danger, contact emergency services (112 in Europe).",
@@ -252,9 +264,9 @@ export const en: Dict = {
     safetyFree: "No essential safety feature is paid.",
     plans: {
       free: { name: "Free", price: "€0", f: ["Messages with quotas", "Simple polls", "Masq-branded sharing", "Blocking, reporting, privacy and deletion"] },
-      plus: { name: "Plus", price: "€4.99", f: ["Card customization", "Advanced message sorting", "Higher quotas", "Introduction requests (always with sender consent)"] },
-      creator: { name: "Creator", price: "€12.99", f: ["Aggregated statistics", "Advanced polls", "Exports", "Community management tools"] },
-      community: { name: "Community", price: "€29.99", f: ["Multiple admins", "Multiple private channels", "Higher quotas"] },
+      plus: { name: "Plus", price: "€4.99", f: ["Voluntary hints: self-declared gender and broad region, if shared", "No identity revealed; hints are unverified"] },
+      creator: { name: "Creator", price: "€12.99", f: ["Voluntary hints: self-declared gender and broad region, if shared", "No identity revealed; hints are unverified"] },
+      community: { name: "Community", price: "€29.99", f: ["Voluntary hints: self-declared gender and broad region, if shared", "No identity revealed; hints are unverified"] },
     },
     unavailable: "Unavailable",
     subscribe: "Subscribe",

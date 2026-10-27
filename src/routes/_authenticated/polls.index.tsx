@@ -8,7 +8,7 @@ import { useI18n } from "@/i18n";
 
 export const Route = createFileRoute("/_authenticated/polls/")({
   staticData: { sitemap: false },
-  head: () => ({ meta: [{ title: "Sondages — Masq" }, { name: "description", content: "Tes sondages à votes masqués." }, { property: "og:title", content: "Sondages — Masq" }, { property: "og:description", content: "Tes sondages à votes masqués." }] }),
+  head: () => ({ meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "Sondages — Masq" }, { name: "description", content: "Tes sondages à votes masqués." }, { property: "og:title", content: "Sondages — Masq" }, { property: "og:description", content: "Tes sondages à votes masqués." }] }),
   component: Polls,
 });
 

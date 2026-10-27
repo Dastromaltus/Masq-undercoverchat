@@ -10,7 +10,7 @@ import { meQuery, publicUrl } from "@/lib/me";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   staticData: { sitemap: false },
-  head: () => ({ meta: [{ title: "Accueil — Masq" }, { name: "description", content: "Ton tableau de bord Masq." }, { property: "og:title", content: "Accueil — Masq" }, { property: "og:description", content: "Ton tableau de bord Masq." }] }),
+  head: () => ({ meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "Accueil — Masq" }, { name: "description", content: "Ton tableau de bord Masq." }, { property: "og:title", content: "Accueil — Masq" }, { property: "og:description", content: "Ton tableau de bord Masq." }] }),
   component: Dashboard,
 });
 

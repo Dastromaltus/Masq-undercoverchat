@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/use-auth";
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
   head: () => ({
-    meta: [
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
       { title: "Masq — Questions anonymes Instagram, révélation consentie" },
       { name: "description", content: "Questions anonymes pour Instagram : reçois des messages, partage les réponses en story et révèle ton profil uniquement quand tu le décides." },
       { property: "og:title", content: "Masq — Questions anonymes Instagram" },

@@ -4,7 +4,7 @@ import { useI18n } from "@/i18n";
 
 export const Route = createFileRoute("/help")({
   staticData: { sitemap: true },
-  head: () => ({ meta: [{ title: "Aide et signalement — Masq" }, { name: "description", content: "Signaler un contenu, bloquer, gérer ta boîte." }, { property: "og:title", content: "Aide — Masq" }, { property: "og:description", content: "Signaler un contenu, bloquer, gérer ta boîte." }] }),
+  head: () => ({ meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "Aide et signalement — Masq" }, { name: "description", content: "Signaler un contenu, bloquer, gérer ta boîte." }, { property: "og:title", content: "Aide — Masq" }, { property: "og:description", content: "Signaler un contenu, bloquer, gérer ta boîte." }] }),
   component: () => {
     const { t } = useI18n();
     return (
