@@ -240,7 +240,7 @@ export const fr = {
   safety: {
     title: "Sécurité et confidentialité",
     p1: "Ce que voient les autres : ton pseudo public, ta bio et ta question d’accueil sur ta page /u/pseudo. Jamais ton email ni ton identifiant interne.",
-    p2: "Quand tu envoies un message : le destinataire ne voit pas qui tu es. La plateforme conserve techniquement le lien entre ton compte et le message, dans un espace séparé et inaccessible aux autres utilisateurs, afin de prévenir les abus.",
+    p2: "Quand tu envoies un message : ton compte reste masqué. Si tu l’autorises pour ce message, le destinataire abonné peut voir le genre et la grande région que tu déclares, sans vérification. Ces indices peuvent faciliter ta reconnaissance. La plateforme conserve le lien entre ton compte et le message dans un espace séparé et inaccessible aux autres utilisateurs, afin de prévenir les abus.",
     p3: "Ce n’est pas de l’anonymat absolu : en cas d’abus grave ou d’obligation légale, un accès restreint et journalisé peut être nécessaire.",
     p4: "Blocage, signalement, export et suppression du compte sont gratuits.",
     p5: "La déclaration d’âge (18+) n’est pas une vérification d’identité.",

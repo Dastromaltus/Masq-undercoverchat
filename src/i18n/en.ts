@@ -242,7 +242,7 @@ export const en: Dict = {
   safety: {
     title: "Safety & privacy",
     p1: "What others see: your public username, bio and welcome question on your /u/username page. Never your email or internal ID.",
-    p2: "When you send a message: the recipient doesn't see who you are. The platform technically keeps the link between your account and the message, in a separate store inaccessible to other users, to prevent abuse.",
+    p2: "When you send a message: your account stays masked. If you allow it for this message, a subscribed recipient can see your self-declared gender and broad region, without verification. These hints may make you recognizable. The platform keeps the account-to-message link in a separate store inaccessible to other users, to prevent abuse.",
     p3: "This is not absolute anonymity: in case of serious abuse or legal obligation, restricted and logged access may be necessary.",
     p4: "Blocking, reporting, export and account deletion are free.",
     p5: "The age declaration (18+) is not an identity verification.",
