@@ -4,6 +4,7 @@ import { AppShell, PrivacyNotice, FooterLinks } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/i18n";
 import { useAuth } from "@/hooks/use-auth";
+import logoUrl from "@/assets/logo-mask.png";
 
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
