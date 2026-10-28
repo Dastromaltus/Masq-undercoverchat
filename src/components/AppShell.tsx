@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Home, Inbox, BarChart3, Users, User, ShieldCheck } from "lucide-react";
 import { useI18n } from "@/i18n";
 import { useAuth } from "@/hooks/use-auth";
+import logoUrl from "@/assets/logo-mask.png";
 
 export function LangSwitch() {
   const { lang, setLang } = useI18n();
@@ -26,8 +27,8 @@ export function LangSwitch() {
 
 export function Logo() {
   return (
-    <Link to="/" className="font-display text-2xl font-extrabold tracking-tight">
-      <span className="text-gradient">masq</span>
+    <Link to="/" aria-label="Masq" className="flex items-center">
+      <img src={logoUrl} alt="Masq" width={1024} height={1024} className="h-9 w-auto" />
     </Link>
   );
 }
