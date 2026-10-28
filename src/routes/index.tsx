@@ -30,9 +30,13 @@ function Landing() {
   return (
     <AppShell>
       <section className="pt-10 pb-8 text-center">
-        <div className="mx-auto mb-6 flex size-20 items-center justify-center rounded-3xl bg-gradient-primary text-4xl shadow-glow" aria-hidden>
-          🎭
-        </div>
+        <img
+          src={logoUrl}
+          alt="Masq"
+          width={1024}
+          height={1024}
+          className="mx-auto mb-6 w-48 drop-shadow-[0_18px_50px_rgba(168,85,247,0.35)]"
+        />
         <h1 className="text-4xl font-extrabold leading-tight">
           {t.landing.tagline.split(". ")[0]}.
           <span className="mt-2 block text-gradient">{t.landing.tagline.split(". ").slice(1).join(". ")}</span>
