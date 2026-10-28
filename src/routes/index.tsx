@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { EyeOff, HandHeart, Sparkles } from "lucide-react";
+import { ArrowUpRight, EyeOff, HandHeart, Sparkles } from "lucide-react";
+import { ConversationPreview } from "@/components/ConversationPreview";
 import { AppShell, PrivacyNotice, FooterLinks } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/i18n";
@@ -29,28 +30,27 @@ function Landing() {
   ];
   return (
     <AppShell>
-      <section className="pt-10 pb-8 text-center">
+      <section className="landing-intro pt-6 pb-6 text-center">
+        <p className="mb-3 text-xs font-semibold uppercase text-mint">{t.landing.intro}</p>
         <img
           src={logoUrl}
           alt="Masq"
           width={1024}
           height={1024}
-          className="mx-auto mb-6 w-48 drop-shadow-[0_18px_50px_rgba(168,85,247,0.35)]"
+          className="brand-float mx-auto mb-2 size-32 object-contain"
         />
-        <h1 className="text-4xl font-extrabold leading-tight">
-          {t.landing.tagline.split(". ")[0]}.
-          <span className="mt-2 block text-gradient">{t.landing.tagline.split(". ").slice(1).join(". ")}</span>
-        </h1>
-        <h2 className="mt-4 text-base font-semibold text-muted-foreground">{t.landing.seoHeading}</h2>
-        <div className="mt-8 flex flex-col gap-3">
+        <h1 className="font-display text-6xl font-extrabold leading-tight">Masq<span className="text-primary">.</span></h1>
+        <h2 className="mx-auto mt-3 max-w-sm text-xl font-bold leading-snug">{t.landing.seoHeading}</h2>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">{t.landing.tagline}</p>
+        <div className="mt-6 flex flex-col gap-2">
           {session ? (
             <Button asChild variant="hero" size="lg">
-              <Link to="/dashboard">{t.nav.home}</Link>
+              <Link to="/dashboard">{t.nav.home}<ArrowUpRight aria-hidden /></Link>
             </Button>
           ) : (
             <>
               <Button asChild variant="hero" size="lg">
-                <Link to="/auth" search={{ mode: "signup" }}>{t.landing.cta}</Link>
+                <Link to="/auth" search={{ mode: "signup" }}>{t.landing.cta}<ArrowUpRight aria-hidden /></Link>
               </Button>
               <Button asChild variant="ghost" size="lg">
                 <Link to="/auth">{t.landing.ctaSecondary}</Link>
@@ -60,11 +60,12 @@ function Landing() {
         </div>
         <p className="mt-4 text-xs text-muted-foreground">{t.landing.adult}</p>
       </section>
-      <section className="grid gap-3">
-        {features.map(({ icon: Icon, title, desc }) => (
-          <article key={title} className="card-surface flex gap-4 p-4">
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent">
-              <Icon className="size-5 text-primary" aria-hidden />
+      <ConversationPreview />
+      <section className="landing-features mt-6 grid">
+        {features.map(({ icon: Icon, title, desc }, index) => (
+          <article key={title} className="feature-row flex gap-4 border-t border-border py-5">
+            <div className={`feature-icon flex size-11 shrink-0 items-center justify-center rounded-lg ${index === 1 ? "bg-mint/10 text-mint" : index === 2 ? "bg-coral/10 text-coral" : "bg-accent text-primary"}`}>
+              <Icon className="size-5" aria-hidden />
             </div>
             <div>
               <h2 className="font-bold">{title}</h2>
