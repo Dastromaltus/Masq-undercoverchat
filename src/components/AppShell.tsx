@@ -27,8 +27,8 @@ export function LangSwitch() {
 
 export function Logo() {
   return (
-    <Link to="/" className="font-display text-2xl font-extrabold tracking-tight">
-      <span className="text-gradient">masq</span>
+    <Link to="/" aria-label="Masq" className="flex items-center">
+      <img src={logoUrl} alt="Masq" width={1024} height={1024} className="h-9 w-auto" />
     </Link>
   );
 }
