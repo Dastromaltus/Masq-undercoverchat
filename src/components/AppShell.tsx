@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Home, Inbox, BarChart3, Users, User, ShieldCheck } from "lucide-react";
 import { useI18n } from "@/i18n";
 import { useAuth } from "@/hooks/use-auth";
+import logoUrl from "@/assets/logo-mask.png";
 
 export function LangSwitch() {
   const { lang, setLang } = useI18n();
