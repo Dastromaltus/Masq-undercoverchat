@@ -10,6 +10,7 @@
 <!-- LOVABLE:END -->
 
 ## Architecture rules
+- Presentation motion uses CSS with a reduced-motion override; rotating examples are explicitly labeled and remain independent of real inbox data — why: visual polish must preserve accessibility and never imply fabricated activity.
 - Voluntary per-message hints are isolated without client table grants; recipient status uses an ownership-checking RPC, and hint values use a service-only RPC after authenticated server-side Stripe entitlement checks — why: hiding UI must never substitute for paid access or sender confidentiality.
 - Shared Stripe subscription checks live in a server-only helper used by billing and hints — why: both surfaces must apply the same live entitlement rules without nested server-function calls.
 - Sender identity lives only in `message_sender_links` (no client grants); all sender-dependent actions go through SECURITY DEFINER RPCs — why: the recipient's browser must never receive the sender link.

@@ -34,6 +34,16 @@ export const fr = {
       "Votre identité n’est pas affichée aux autres utilisateurs. La plateforme traite certaines données pour fournir le service et prévenir les abus.",
   },
   landing: {
+    intro: "Les questions restent. Les masques aussi.",
+    example: "Exemple de conversation",
+    exampleSender: "Identité masquée",
+    examples: [
+      { question: "Si on partait demain, tu choisirais quelle destination ?", answer: "Un billet pour les Antilles, sans hésiter ☀️" },
+      { question: "C’est quoi le rêve que tu n’as jamais osé partager ?", answer: "Monter sur scène et chanter ma première chanson 🎤" },
+      { question: "Le petit truc qui te fait sourire à chaque fois ?", answer: "Un message inattendu. Comme celui-ci ✨" },
+    ],
+    previousExample: "Exemple précédent", nextExample: "Exemple suivant",
+    pauseExamples: "Mettre les exemples en pause", playExamples: "Faire défiler les exemples",
     tagline: "Pose tes questions librement. Partage les réponses. Révèle ton profil uniquement quand tu le décides.",
     seoHeading: "Questions anonymes pour Instagram, sans exposer ton identité",
     cta: "Créer mon lien",

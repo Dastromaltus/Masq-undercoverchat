@@ -36,6 +36,16 @@ export const en: Dict = {
       "Your identity is not shown to other users. The platform processes some data to provide the service and prevent abuse.",
   },
   landing: {
+    intro: "Keep the questions. Keep the mystery.",
+    example: "Example conversation",
+    exampleSender: "Masked identity",
+    examples: [
+      { question: "If we left tomorrow, where would you want to go?", answer: "A ticket to the Caribbean, without a second thought ☀️" },
+      { question: "What’s the dream you’ve never dared to share?", answer: "Getting on stage to sing my first song 🎤" },
+      { question: "What’s the little thing that always makes you smile?", answer: "An unexpected message. Just like this one ✨" },
+    ],
+    previousExample: "Previous example", nextExample: "Next example",
+    pauseExamples: "Pause examples", playExamples: "Play examples",
     tagline: "Ask freely. Share the answers. Reveal your profile only when you decide to.",
     seoHeading: "Anonymous questions for Instagram, without exposing your identity",
     cta: "Create my link",
